@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Make It Mine</title>
+
+    <style>
+        * {
+
+
+            margin: 0;
+            padding: 0;
+
+              box-sizing: border-box;
+              
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fc;
+            color: #222;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .top-header {
+            height: 75px;
+            padding: 0 50px;
+
+
+            background: white;
+            border-bottom: 1px solid white;
+
+
+         display: flex;
+          align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .logo  {
+
+
+            font-size: 25px;
+            font-weight: 700;
+
+
+        }
+        .logo span  {
+
+            color: #ff4f81;
+        }
+
+
+        .navbar {
+            display: flex;
+            gap: 30px;
+        }
+
+        .navbar a:hover {
+            color: #ff4f81;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .header-actions button {
+            border: none;
+            background: transparent;
+            font-size: 19px;
+        }
+
+        .faq-hero {
+            background: #fff0f5;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .faq-hero h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .faq-hero p {
+            color: #666;
+        }
+
+        .faq-container  {
+
+            max-width: 850px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+
+            margin-bottom: 15px;
+             padding: 22px 25px;
+
+
+            border: 1px solid white;
+         
+        }
+
+
+        .faq-item h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .faq-item p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .faq-contact {
+
+            text-align: center;
+            margin-top: 35px;
+
+        }
+
+        .faq-contact a   {
+
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 22px;
+
+            background: #ff4f81;
+            color: white;
+
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        @media(max-width:700px)  {
+
+            .top-header  {
+
+                height: auto;
+                padding: 15px 20px;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .navbar  {
+
+                order: 3;
+                width: 100%;
+
+                justify-content: center;
+
+            }
+
+            .faq-hero h1   {
+
+                font-size: 32px;
+            }
+        }
+
+
+    </style>
+
+    <link rel="stylesheet" href="../styles/faq.css">
+
+
+</head>
+
+<body>
+
+<header class="top-header">
+
+    <div class="logo">
+        Make It<span> Mine</span>
+    </div>
+
+    <nav class="navbar">
+        <a href="./home.html">Home</a>
+          <a href="./shop.html">Shop</a>
+
+         <a href="./categories.html">Categories</a>
+
+        <a href="./about.html">About</a>
+
+
+    </nav>
+
+    <div class="header-actions">
+        <button>♡</button>
+        <button>🛒</button>
+        <button>👤</button>
+    </div>
+
+</header>
+
+<section class="faq-hero">
+    <h1>Frequently Asked Questions</h1>
+    <p>Find answers to common questions about Make It Mine.</p>
+</section>
+
+<main class="faq-container">
+
+    <article class="faq-item">
+        <h3>How do I customize a product?</h3>
+        <p>
+            Select a product from the Shop section and open
+            the customizer. You can upload images, add text
+            and choose product colors.
+        </p>
+    </article>
+
+    <article class="faq-item">
+        <h3>Can I save my design?</h3>
+        <p>
+            Yes. Designs can be saved so you can continue
+            editing them later.
+        </p>
+    </article>
+
+    <article class="faq-item">
+        <h3>How can I track my order?</h3>
+
+
+        <p>
+
+
+            Open My Orders and select the Track Order option
+            to view your order status.
+        </p>
+    </article>
+
+    <article class="faq-item">
+
+
+        <h3> What payment methods are available?  </h3>
+
+
+        <p>
+            The checkout flow supports common payment options
+            such as UPI, cards, net banking and cash on delivery.
+        </p>
+
+
+    </article>
+
+    <article class="faq-item">
+        <h3>Can I change my delivery address?</h3>
+
+        <p>
+
+
+            You can manage saved addresses from your Addresses
+            section before placing an order.
+        </p>
+
+
+    </article>
+
+    <article class="faq-item">
+
+        <h3>How do I contact support?</h3>
+        <p>
+
+
+            Visit the Contact Us page and send us your query.
+
+        </p>
+
+
+    </article>
+
+
+    <div class="faq-contact">
+
+
+        <h3>Still have a question?</h3>
+
+        <a href="./contact.html">
+            Contact Support
+        </a>
+
+    </div>
+
+</main>
+
+<script src="../js/faq.js"></script>
+
+</body>
+</html>

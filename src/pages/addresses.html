@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Addresses - Make It Mine</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: white;
+            color: #222;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .top-header {
+            height: 75px;
+            padding: 0 50px;
+            background: white;
+            border-bottom: 1px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #ff4f81;
+        }
+
+        .navbar {
+
+            display: flex;
+            gap: 30px;
+        }
+
+
+
+        .header-actions {
+            display: flex;
+              gap: 12px;
+        }
+
+
+
+        .header-actions button {
+            border: none;
+             background: transparent;
+            font-size: 19px;
+        }
+
+        .page-header {
+            background: white;
+
+
+              padding: 55px 20px;
+            text-align: center;
+
+        }
+
+        .page-header h1 {
+            font-size: 38px;
+             margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: #666;
+        }
+
+        .address-container {
+            max-width: 1000px;
+            margin: 45px auto;
+            padding: 0 25px;
+        }
+
+        .add-address {
+            display: inline-block;
+            background: #ff4f81;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .address-grid {
+
+
+            display: grid;
+
+          grid-template-columns: repeat(2, 1fr);
+
+               gap: 20px;
+        }
+        
+
+        .address-card {
+
+
+            background: white;
+            border: 1px solid white;
+            border-radius: 15px;
+
+
+            padding: 25px;
+            
+        }
+
+        .address-top {
+            display: flex;
+              justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .address-top h3  {
+
+            font-size: 18px;
+        }
+
+
+
+        .default  {
+            color: #ff4f81;
+            font-size: 12px;
+
+              background: white;
+          padding: 5px 9px;
+            border-radius: 15px;
+        }
+
+        .address-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .address-actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .address-actions button {
+            padding: 9px 16px;
+            background: white;
+
+              border: 1px solid white;
+
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        @media(max-width:700px) {
+            .top-header {
+                 height: auto;
+
+                padding: 15px 20px;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .navbar {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .address-grid {
+
+                grid-template-columns: 1fr;
+
+
+            }
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="../styles/addresses.css">
+
+
+
+</head>
+
+<body>
+
+<header class="top-header">
+
+    <div class="logo">
+        Make It<span> Mine</span>
+    </div>
+
+    <nav class="navbar">
+           <a href="./home.html">Home</a>
+          <a href="./shop.html">Shop</a>
+
+        <a href="./categories.html">Categories</a>
+        <a href="./about.html">About</a>
+    </nav>
+
+    <div class="header-actions">
+        <button>♡</button>
+        <button>🛒</button>
+        <button>👤</button>
+    </div>
+
+</header>
+
+<section class="page-header">
+    <h1>My Addresses</h1>
+    <p>Manage your saved delivery addresses.</p>
+</section>
+
+<main class="address-container">
+
+    <a href="#" class="add-address">
+        + Add New Address
+    </a>
+
+    <div class="address-grid">
+
+        <article class="address-card">
+
+            <div class="address-top">
+                <h3>Home</h3>
+                <span class="default">Default</span>
+            </div>
+
+            <p>
+
+
+             Bhavya Jain<br>
+
+                 123 Main Street<br>
+              New Delhi, Delhi 110001<br>
+
+                India<br>
+                Phone: +91 98XXXXXX10
+            </p>
+
+
+
+
+            <div class="address-actions">
+                <button>Edit</button>
+                <button>Remove</button>
+
+
+            </div>
+
+
+        </article>
+
+        <article class="address-card">
+
+            <div class="address-top">
+                <h3>College</h3>
+            </div>
+
+            <p>
+                Bhavya Jain<br>
+
+                  University Road<br>
+                New Delhi, Delhi 1100XX<br>
+
+                India<br>
+                Phone: +91 98XXXXXX10
+            </p>
+
+            <div class="address-actions">
+                 
+                  <button>Edit</button>
+                <button>Remove</button>
+                <button>Set Default</button>
+            </div>
+
+        </article>
+
+    </div>
+
+</main>
+
+<script src="../js/addresses.js"></script>
+<script type="module" src="../js/auth-guard.js"></script>
+
+</body>
+</html>

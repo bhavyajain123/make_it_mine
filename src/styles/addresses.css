@@ -1,0 +1,250 @@
+
+:root {
+    --pink: #ff4f81;
+    --pink-hover: #ed3d70;
+    --pink-text: #ff3f78;
+    --pink-soft: #fff0f5;
+    --pink-softer: #fff4f7;
+    --pink-border: #ffd1df;
+ 
+    --dark: #222;
+    --text: #444;
+    --text-muted: #666;
+    --border: #eee;
+    --bg: #f8f8fb;
+ 
+    --radius-card: 16px;
+    --radius-btn: 10px;
+    --speed: 0.2s;
+}
+ 
+body {
+    background: var(--bg);
+
+}
+ 
+
+.top-header  {
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+
+}
+
+ 
+.navbar a  {
+
+    transition: color var(--speed) ease ;
+}
+ 
+
+.navbar a:hover  {
+
+      color: var(--pink)  ;
+}
+ 
+.header-actions button  {
+
+    width: 38px;
+     height: 38px;
+  border: none;
+     border-radius: 50%;
+
+    background: transparent;
+    cursor: pointer;
+    transition: background var(--speed) ease;
+
+}
+
+ 
+.header-actions button:hover {
+
+    background: var(--pink-soft) ;
+}  
+ 
+
+
+.page-header  {
+
+    padding: 60px 20px;
+    text-align: center ;
+
+    background: var(--pink-softer) ; 
+
+}
+ 
+.page-header h1  {
+
+    font-size: 42px;
+     color: var(--dark);
+    margin-bottom: 10px;
+
+}
+ 
+.page-header p  {
+
+    font-size: 16px;
+    color: var(--text-muted)  ;
+}
+ 
+
+.address-container {
+    max-width: 1100px;
+    margin: 50px auto 80px;
+}
+ 
+.add-address  {
+
+    padding: 14px 23px;
+    border: none;
+    border-radius: var(--radius-btn);
+    background: var(--pink);
+    color: white;
+    font-weight: 600 ;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 79, 129, 0.2);
+    transition: background var(--speed) ease, transform var(--speed) ease;
+}
+ 
+.add-address:hover {
+    background: var(--pink-hover);
+    transform: translateY(-2px);
+}
+
+ 
+.address-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-top: 30px;
+}
+ 
+.address-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 28px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    transition: transform var(--speed) ease, box-shadow var(--speed) ease;
+}
+ 
+.address-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.09);
+}
+ 
+.address-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+ 
+.address-top h3 {
+    font-size: 20px;
+}
+ 
+.default {
+    color: var(--pink-text);
+    background: var(--pink-soft);
+    border: 1px solid var(--pink-border);
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+ 
+.address-card p {
+    padding: 16px;
+    border-radius: var(--radius-btn);
+    background: #fafafa;
+    color: #62626b;
+    line-height: 1.7;
+    border-left: 3px solid var(--pink);
+}
+ 
+.address-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+ 
+.address-actions button {
+    padding: 9px 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    background: white;
+    color: var(--text);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--speed) ease, color var(--speed) ease,
+                border-color var(--speed) ease;
+}
+ 
+.address-actions button:hover {
+    color: var(--pink-text);
+    background: #fff2f6;
+    border-color: #ffc4d4;
+}
+ 
+
+.address-actions button:last-child {
+    background: var(--dark);
+    color: white;
+    border-color: var(--dark);
+}
+ 
+.address-actions button:last-child:hover {
+    background: var(--pink);
+    border-color: var(--pink);
+    color: white;
+}
+ 
+
+.add-address:focus-visible,
+.address-actions button:focus-visible,
+.header-actions button:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: 2px;
+}
+ 
+
+@media (max-width: 800px) {
+    .address-container {
+        margin-top: 35px;
+        padding: 0 20px;
+    }
+ 
+    .address-grid {
+        grid-template-columns: 1fr;
+    }
+ 
+    .page-header h1 {
+        font-size: 35px;
+    }
+}
+ 
+@media (max-width: 600px) {
+    .top-header {
+        padding: 15px 20px;
+    }
+ 
+    .page-header {
+        padding: 45px 20px;
+    }
+ 
+    .page-header h1 {
+        font-size: 31px;
+    }
+ 
+    .address-card {
+        padding: 22px;
+    }
+ 
+    .address-actions {
+        flex-wrap: wrap;
+    }
+}

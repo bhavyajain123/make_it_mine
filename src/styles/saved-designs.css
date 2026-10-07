@@ -1,0 +1,266 @@
+
+:root {
+    --pink: #ff4f81;
+    --pink-hover: #ed3d70;
+    --pink-soft: #fff0f5;
+    --pink-softer: #fff4f7;
+    --pink-border: #ffc4d4;
+ 
+    --danger: #e63968;
+    --danger-soft: #fff1f5;
+ 
+    --dark: #222;
+    --text-muted: #777;
+    --page-muted: #666;
+    --border: #eee;
+    --bg: #f8f8fb;
+    --image-bg: #f5f5f7;
+ 
+    --radius-card: 16px;
+    --radius-btn: 8px;
+    --speed: 0.2s;
+}
+ 
+body {
+    background: var(--bg);
+}
+ 
+
+.top-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+ 
+.logo {
+    letter-spacing: -0.5px;
+}
+ 
+.navbar a {
+    transition: color var(--speed) ease;
+}
+ 
+.navbar a:hover {
+    color: var(--pink);
+}
+ 
+.header-actions button {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: background var(--speed) ease;
+}
+ 
+.header-actions button:hover {
+    background: var(--pink-soft);
+}
+ 
+
+.page-header {
+    padding: 60px 20px;
+    text-align: center;
+    background: var(--pink-softer);
+}
+ 
+.page-header h1 {
+    margin: 0;
+    color: var(--dark);
+    font-size: 40px;
+    letter-spacing: -0.5px;
+}
+ 
+.page-header p {
+    margin: 8px 0 0;
+    color: var(--page-muted);
+    font-size: 16px;
+}
+ 
+
+.design-container {
+    max-width: 1150px;
+    margin: 50px auto 80px;
+    padding: 0 20px;
+}
+ 
+.design-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+ 
+.design-card {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    transition: transform var(--speed) ease, box-shadow var(--speed) ease;
+}
+ 
+.design-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.09);
+}
+ 
+.design-image {
+    position: relative;
+    height: 260px;
+    margin: 12px;
+    overflow: hidden;
+    background: var(--image-bg);
+    border-radius: 12px;
+}
+ 
+.design-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    object-fit: contain;
+    transition: transform 0.25s ease;
+}
+ 
+.design-card:hover .design-image img {
+    transform: scale(1.04);
+}
+
+.design-info {
+    padding: 8px 20px 22px;
+}
+ 
+.design-info h3 {
+    margin: 0 0 8px;
+    font-size: 19px;
+}
+ 
+.design-info p {
+    margin: 0 0 18px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+ 
+.design-actions {
+    display: flex;
+    gap: 10px;
+}
+ 
+.design-actions a,
+.design-actions button {
+    display: inline-flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 14px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-btn);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background var(--speed) ease, color var(--speed) ease,
+                border-color var(--speed) ease, transform var(--speed) ease;
+}
+ 
+.design-actions .edit {
+    background: var(--pink);
+    color: #fff;
+}
+ 
+.design-actions .edit:hover {
+    background: var(--pink-hover);
+    transform: translateY(-2px);
+}
+ 
+.design-actions .delete {
+    background: #fff;
+    border-color: #e5e5e5;
+    color: var(--text-muted);
+}
+ 
+.design-actions .delete:hover {
+    background: var(--danger-soft);
+    border-color: var(--pink-border);
+    color: var(--danger);
+    transform: translateY(-2px);
+}
+ 
+
+.design-actions a:focus-visible,
+.design-actions button:focus-visible,
+.header-actions button:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: 2px;
+}
+ 
+
+@media (max-width: 1000px) {
+    .design-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+ 
+@media (max-width: 800px) {
+    .design-container {
+        margin-top: 35px;
+    }
+ 
+    .design-grid {
+        gap: 22px;
+    }
+ 
+    .design-image {
+        height: 230px;
+    }
+ 
+    .page-header h1 {
+        font-size: 35px;
+    }
+}
+ 
+@media (max-width: 600px) {
+    .top-header {
+        padding: 15px 20px;
+    }
+ 
+    .page-header {
+        padding: 45px 20px;
+    }
+ 
+    .page-header h1 {
+        font-size: 31px;
+    }
+ 
+    .design-container {
+        padding: 0 15px;
+    }
+ 
+    .design-grid {
+        grid-template-columns: 1fr;
+    }
+ 
+    .design-image {
+        height: 220px;
+    }
+ 
+    .design-actions {
+        flex-direction: column;
+    }
+ 
+    .design-actions a,
+    .design-actions button {
+        width: 100%;
+    }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+ 

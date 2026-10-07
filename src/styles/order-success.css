@@ -1,0 +1,236 @@
+
+:root {
+    --pink: #ff4f81;
+    --pink-hover: #ed3d70;
+    --pink-soft: #fff0f5;
+    --pink-border: #f5d9e2;
+    --pink-dashed: #ffb3c9;
+ 
+    --green: #28b45a;
+    --dark: #222;
+    --text-muted: #666;
+    --label: #999;
+ 
+    --radius-card: 20px;
+    --radius-btn: 10px;
+    --speed: 0.2s;
+}
+ 
+
+.navbar a {
+    position: relative;
+    padding: 5px 0;
+    transition: color var(--speed) ease;
+}
+ 
+.navbar a:hover {
+    color: var(--pink);
+}
+ 
+.header-actions button {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: background var(--speed) ease, color var(--speed) ease;
+}
+ 
+.header-actions button:hover {
+    background: var(--pink-soft);
+    color: var(--pink);
+}
+ 
+
+.success-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 60px 20px;
+    overflow: hidden;
+}
+ 
+
+.success-section::before,
+.success-section::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    border-radius: 50%;
+    background: var(--pink-soft);
+}
+ 
+.success-section::before {
+    top: -120px;
+    left: -100px;
+    width: 320px;
+    height: 320px;
+}
+ 
+.success-section::after {
+    right: -80px;
+    bottom: -100px;
+    width: 260px;
+    height: 260px;
+}
+ 
+.success-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 520px;
+    padding: 45px 35px;
+    border: 1px solid var(--pink-border);
+    border-radius: var(--radius-card);
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+ 
+.success-icon {
+    display: grid;
+    width: 76px;
+    height: 76px;
+    place-items: center;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    background: #eafaf0;
+    color: var(--green);
+    font-size: 34px;
+    box-shadow: 0 6px 18px rgba(40, 180, 90, 0.12);
+}
+ 
+.success-card h1 {
+    margin: 0 0 10px;
+    color: var(--dark);
+    font-size: 30px;
+}
+ 
+.success-card p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+
+.order-number {
+    display: inline-block;
+    margin: 26px 0;
+    padding: 16px 28px;
+    border: 1px dashed var(--pink-dashed);
+    border-radius: 12px;
+    background: #fffafc;
+    transition: transform var(--speed) ease, box-shadow var(--speed) ease;
+}
+ 
+.order-number:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 79, 129, 0.08);
+}
+ 
+.order-number::before {
+    content: "ORDER CONFIRMATION";
+    display: block;
+    margin-bottom: 8px;
+    color: var(--label);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+ 
+.order-number strong {
+    color: var(--dark);
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+ 
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+}
+ 
+.buttons .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 26px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-btn);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform var(--speed) ease, box-shadow var(--speed) ease,
+                background var(--speed) ease;
+}
+ 
+.buttons .btn:hover {
+    transform: translateY(-2px);
+}
+ 
+.buttons .primary {
+    background: var(--pink);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(255, 79, 129, 0.2);
+}
+ 
+.buttons .primary:hover {
+    background: var(--pink-hover);
+    box-shadow: 0 9px 20px rgba(255, 79, 129, 0.28);
+}
+ 
+.buttons .secondary {
+    min-width: 180px;
+    border-color: var(--pink);
+    background: #fff;
+    color: var(--pink);
+    text-align: center;
+}
+ 
+.buttons .secondary:hover {
+    background: var(--pink-soft);
+    box-shadow: 0 6px 16px rgba(255, 79, 129, 0.1);
+}
+ 
+
+.buttons .btn:focus-visible,
+.header-actions button:focus-visible,
+.navbar a:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: 3px;
+}
+ 
+
+@media (max-width: 700px) {
+    .success-section {
+        padding: 40px 16px;
+    }
+ 
+    .success-card {
+        padding: 35px 22px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    }
+ 
+    .success-card h1 {
+        font-size: 26px;
+    }
+ 
+    .buttons {
+        flex-direction: column;
+    }
+ 
+    .buttons .btn,
+    .buttons .secondary {
+        width: 100%;
+    }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}

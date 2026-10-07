@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | MakeItMine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --primary-dark: #6025c9;
+            --secondary: #f5f0ff;
+            --text: #252136;
+            --muted: #777386;
+            --border: #e9e5ef;
+            --white: #ffffff;
+            --success: #16865c;
+            --background: #faf9fc;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .announcement {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 9px 15px;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 17px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1.2px;
+            color: var(--text);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-size: 13px;
+            color: #5c5869;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .secure-label {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12px;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 35px 24px 70px;
+        }
+
+        .breadcrumb {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 22px;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        .page-heading {
+            margin-bottom: 30px;
+        }
+
+        .page-heading h1 {
+            font-size: clamp(29px, 4vw, 40px);
+            letter-spacing: -1.2px;
+            margin-bottom: 5px;
+        }
+
+        .page-heading p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 390px;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .checkout-main {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .panel {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 25px;
+        }
+
+        .panel-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .step-number {
+            width: 34px;
+            height: 34px;
+            border-radius: 11px;
+            background: var(--secondary);
+            color: var(--primary);
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .panel-heading h2 {
+            font-size: 17px;
+            line-height: 1.4;
+        }
+
+        .panel-heading p {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            min-width: 0;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #494456;
+        }
+
+        .required {
+            color: #dc3b55;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #e4e0eb;
+            background: white;
+            padding: 12px 13px;
+            border-radius: 9px;
+            outline: none;
+            color: var(--text);
+            font-size: 13px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.09);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .delivery-note {
+            display: flex;
+            gap: 10px;
+            background: #f8f5ff;
+            padding: 13px;
+            border-radius: 10px;
+            font-size: 12px;
+            color: #625276;
+            margin-top: 19px;
+        }
+
+        .delivery-note strong {
+            color: var(--primary);
+        }
+
+        .payment-option {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .payment-option:last-child {
+            margin-bottom: 0;
+        }
+
+        .payment-option:has(input:checked) {
+            border-color: var(--primary);
+            background: #fbf9ff;
+        }
+
+        .payment-option input {
+            margin-top: 5px;
+            accent-color: var(--primary);
+        }
+
+        .payment-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: var(--secondary);
+            display: grid;
+            place-items: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .payment-info {
+            flex: 1;
+        }
+
+        .payment-info strong {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .payment-info p {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .payment-badge {
+            background: #e7f8ef;
+            color: var(--success);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 7px;
+            border-radius: 5px;
+            white-space: nowrap;
+        }
+
+        .payment-disclaimer {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 14px;
+            line-height: 1.7;
+        }
+
+        .summary-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 25px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .summary-card h2 {
+            font-size: 19px;
+            margin-bottom: 5px;
+        }
+
+        .summary-subtitle {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 22px;
+        }
+
+        .summary-items {
+            display: flex;
+            flex-direction: column;
+            gap: 17px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 3px;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .item-image {
+            width: 64px;
+            height: 64px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            background: var(--secondary);
+            display: grid;
+            place-items: center;
+            font-size: 27px;
+            position: relative;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .item-quantity {
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            width: 21px;
+            height: 21px;
+            border-radius: 50%;
+            background: #4e485e;
+            color: white;
+            font-size: 10px;
+            display: grid;
+            place-items: center;
+            border: 2px solid white;
+        }
+
+        .item-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .item-details h3 {
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        .item-details p {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .item-price {
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .summary-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 22px 0;
+        }
+
+        .coupon-title {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .coupon-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .coupon-row input {
+            min-width: 0;
+            flex: 1;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 11px;
+            outline: none;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .coupon-row input:focus {
+            border-color: var(--primary);
+        }
+
+        .coupon-row button {
+            background: var(--secondary);
+            color: var(--primary);
+            border: 0;
+            border-radius: 9px;
+            padding: 0 15px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .coupon-message {
+            font-size: 11px;
+            margin-top: 8px;
+            min-height: 16px;
+        }
+
+        .coupon-message.success {
+            color: var(--success);
+        }
+
+        .coupon-message.error {
+            color: #d13b50;
+        }
+
+        .price-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .price-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 12px;
+            color: #676174;
+        }
+
+        .price-line strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .price-line.discount strong {
+            color: var(--success);
+        }
+
+        .price-line.total {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text);
+            align-items: center;
+        }
+
+        .price-line.total strong {
+            font-size: 21px;
+        }
+
+        .shipping-hint {
+            background: #f6f3ff;
+            color: #6c4aab;
+            padding: 12px;
+            border-radius: 9px;
+            font-size: 11px;
+            margin-top: 19px;
+        }
+
+        .shipping-progress {
+            width: 100%;
+            height: 5px;
+            background: #e9defd;
+            border-radius: 10px;
+            margin-top: 9px;
+            overflow: hidden;
+        }
+
+        .shipping-progress span {
+            display: block;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 11px;
+            font-size: 14px;
+            font-weight: 800;
+            margin-top: 22px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .place-order-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .place-order-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            margin-top: 15px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .terms input {
+            margin-top: 4px;
+            accent-color: var(--primary);
+        }
+
+        .terms a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .secure-message {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 7px;
+            margin-top: 17px;
+            font-size: 11px;
+            color: var(--success);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12px;
+            color: var(--primary);
+            margin-top: 20px;
+            font-weight: 700;
+        }
+
+        .empty-state {
+            text-align: center;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 55px 20px;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .empty-state h2 {
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        .primary-link {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .success-state {
+            max-width: 650px;
+            margin: 20px auto;
+            text-align: center;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 45px 25px;
+        }
+
+        .success-icon {
+            width: 75px;
+            height: 75px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #e5f8ee;
+            color: var(--success);
+            font-size: 38px;
+        }
+
+        .success-state h1 {
+            font-size: 29px;
+            margin-bottom: 10px;
+        }
+
+        .success-state p {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .order-number {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--primary);
+            border-radius: 9px;
+            padding: 12px 18px;
+            font-weight: 800;
+            margin: 15px 0 22px;
+        }
+
+        .success-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .secondary-link {
+            display: inline-block;
+            border: 1px solid var(--border);
+            padding: 12px 20px;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .footer {
+            background: white;
+            border-top: 1px solid var(--border);
+            padding: 25px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .toast {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            max-width: calc(100% - 44px);
+            padding: 13px 18px;
+            background: #292337;
+            color: white;
+            border-radius: 10px;
+            font-size: 13px;
+            box-shadow: 0 10px 30px #0002;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(12px);
+            transition: 0.25s;
+            z-index: 20;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 900px) {
+            .checkout-layout {
+                grid-template-columns: minmax(0, 1fr) 330px;
+                gap: 18px;
+            }
+
+            .panel,
+            .summary-card {
+                padding: 20px;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .navbar {
+                padding: 15px 5%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .page-container {
+                padding: 25px 16px 45px;
+            }
+
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-card {
+                position: static;
+                grid-row: 1;
+            }
+
+            .checkout-main {
+                grid-row: 2;
+            }
+
+            .summary-items {
+                max-height: none;
+            }
+
+            .panel,
+            .summary-card {
+                padding: 19px;
+                border-radius: 14px;
+            }
+
+            .footer {
+                padding: 22px 5%;
+            }
+        }
+
+        @media (max-width: 460px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .page-heading h1 {
+                font-size: 29px;
+            }
+
+            .secure-label {
+                font-size: 0;
+            }
+
+            .secure-label span {
+                font-size: 18px;
+            }
+
+            .payment-option {
+                padding: 12px;
+                gap: 9px;
+            }
+
+            .payment-badge {
+                font-size: 9px;
+            }
+
+            .success-state h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="announcement">
+        MAKE EVERY GIFT PERSONAL — FREE SHIPPING ON ORDERS OVER ₹999
+    </div>
+
+    <header class="navbar">
+        <a href="home.html" class="logo">MakeIt<span>Mine</span></a>
+
+        <nav class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="categories.html">Categories</a>
+            <a href="about.html">About Us</a>
+        </nav>
+
+        <div class="secure-label">
+            <span>🔒</span>
+            <span>Secure Checkout</span>
+        </div>
+    </header>
+
+    <main class="page-container">
+        <div class="breadcrumb">
+            <a href="home.html">Home</a> /
+            <a href="cart.html">Cart</a> /
+            <strong>Checkout</strong>
+        </div>
+
+        <section id="checkoutSection">
+            <div class="page-heading">
+                <h1>Almost yours! 🎁</h1>
+                <p>Enter your details and get your personalized gifts delivered.</p>
+            </div>
+
+            <div class="checkout-layout">
+                <form id="checkoutForm" class="checkout-main">
+                    <section class="panel">
+                        <div class="panel-heading">
+                            <div class="step-number">1</div>
+                            <div>
+                                <h2>Contact Information</h2>
+                                <p>Where can we reach you about your order?</p>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">First Name <span class="required">*</span></label>
+                                <input id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Your first name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName">Last Name <span class="required">*</span></label>
+                                <input id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Your last name" required>
+                            </div>
+
+                            <div class="form-group full">
+                                <label for="email">Email Address <span class="required">*</span></label>
+                                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+                            </div>
+
+                            <div class="form-group full">
+                                <label for="phone">Mobile Number <span class="required">*</span></label>
+                                <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10-digit mobile number" required>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="panel">
+                        <div class="panel-heading">
+                            <div class="step-number">2</div>
+                            <div>
+                                <h2>Shipping Address</h2>
+                                <p>Tell us where your gift should arrive.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group full">
+                                <label for="address">Street Address <span class="required">*</span></label>
+                                <input id="address" name="address" type="text" autocomplete="street-address" placeholder="House number, street, area" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="city">City <span class="required">*</span></label>
+                                <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="Your city" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="state">State <span class="required">*</span></label>
+                                <select id="state" name="state" autocomplete="address-level1" required>
+                                    <option value="">Select state</option>
+                                    <option>Andhra Pradesh</option>
+                                    <option>Arunachal Pradesh</option>
+                                    <option>Assam</option>
+                                    <option>Bihar</option>
+                                    <option>Chhattisgarh</option>
+                                    <option>Goa</option>
+                                    <option>Gujarat</option>
+                                    <option>Haryana</option>
+                                    <option>Himachal Pradesh</option>
+                                    <option>Jharkhand</option>
+                                    <option>Karnataka</option>
+                                    <option>Kerala</option>
+                                    <option>Madhya Pradesh</option>
+                                    <option>Maharashtra</option>
+                                    <option>Manipur</option>
+                                    <option>Meghalaya</option>
+                                    <option>Mizoram</option>
+                                    <option>Nagaland</option>
+                                    <option>Odisha</option>
+                                    <option>Punjab</option>
+                                    <option>Rajasthan</option>
+                                    <option>Sikkim</option>
+                                    <option>Tamil Nadu</option>
+                                    <option>Telangana</option>
+                                    <option>Tripura</option>
+                                    <option>Uttar Pradesh</option>
+                                    <option>Uttarakhand</option>
+                                    <option>West Bengal</option>
+                                    <option>Delhi</option>
+                                    <option>Jammu and Kashmir</option>
+                                    <option>Ladakh</option>
+                                    <option>Chandigarh</option>
+                                    <option>Puducherry</option>
+                                    <option>Andaman and Nicobar Islands</option>
+                                    <option>Dadra and Nagar Haveli and Daman and Diu</option>
+                                    <option>Lakshadweep</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pincode">PIN Code <span class="required">*</span></label>
+                                <input id="pincode" name="pincode" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{6}" maxlength="6" placeholder="6-digit PIN code" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input id="country" name="country" type="text" value="India" readonly>
+                            </div>
+
+                            <div class="form-group full">
+                                <label for="giftMessage">Gift Message or Delivery Instructions (Optional)</label>
+                                <textarea id="giftMessage" name="giftMessage" maxlength="300" placeholder="Add a personal note or special delivery instructions..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="delivery-note">
+                            <span>🚚</span>
+                            <div>
+                                <strong>Made with care, delivered with love.</strong>
+                                <br>Delivery usually takes 3–7 business days, depending on your location and product customization.
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="panel">
+                        <div class="panel-heading">
+                            <div class="step-number">3</div>
+                            <div>
+                                <h2>Payment Method</h2>
+                                <p>Choose how you would like to pay.</p>
+                            </div>
+                        </div>
+
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="cod" checked>
+                            <div class="payment-icon">💵</div>
+                            <div class="payment-info">
+                                <strong>Cash on Delivery</strong>
+                                <p>Pay when your order reaches your doorstep.</p>
+                            </div>
+                            <span class="payment-badge">Available</span>
+                        </label>
+
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="upi">
+                            <div class="payment-icon">📱</div>
+                            <div class="payment-info">
+                                <strong>UPI / Online Payment</strong>
+                                <p>Pay using UPI, cards or net banking when online payments are enabled.</p>
+                            </div>
+                        </label>
+
+                        <p class="payment-disclaimer">
+                            Online payments require a configured payment gateway. Selecting UPI here records your preferred method but does not process a payment.
+                        </p>
+                    </section>
+
+                    <section class="panel">
+                        <div class="panel-heading">
+                            <div class="step-number">4</div>
+                            <div>
+                                <h2>Review and Confirm</h2>
+                                <p>One last step before your gift journey begins.</p>
+                            </div>
+                        </div>
+
+                        <label class="terms">
+                            <input type="checkbox" id="agreeTerms" required>
+                            <span>I confirm that my contact and delivery details are correct and agree to the <a href="terms.html">Terms and Conditions</a> and <a href="privacy.html">Privacy Policy</a>.</span>
+                        </label>
+                    </section>
+                </form>
+
+                <aside class="summary-card">
+                    <h2>Your Order</h2>
+                    <p class="summary-subtitle" id="itemCount">Loading your items...</p>
+
+                    <div class="summary-items" id="summaryItems"></div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="coupon-title">Have a promo code?</div>
+
+                    <div class="coupon-row">
+                        <input id="couponInput" type="text" placeholder="Enter code" aria-label="Promo code">
+                        <button type="button" id="applyCoupon">Apply</button>
+                    </div>
+
+                    <div id="couponMessage" class="coupon-message" aria-live="polite"></div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="price-lines">
+                        <div class="price-line">
+                            <span>Subtotal</span>
+                            <strong id="subtotal">₹0</strong>
+                        </div>
+
+                        <div class="price-line">
+                            <span>Shipping</span>
+                            <strong id="shipping">₹0</strong>
+                        </div>
+
+                        <div class="price-line discount" id="discountLine" hidden>
+                            <span>Discount</span>
+                            <strong id="discount">−₹0</strong>
+                        </div>
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="price-line total">
+                        <span>Total</span>
+                        <strong id="total">₹0</strong>
+                    </div>
+
+                    <div class="shipping-hint" id="shippingHint">
+                        Add more items to unlock free shipping.
+                        <div class="shipping-progress">
+                            <span id="shippingProgress" style="width: 0%"></span>
+                        </div>
+                    </div>
+
+                    <button class="place-order-btn" type="submit" form="checkoutForm" id="placeOrderBtn">
+                        Place Order · ₹0
+                    </button>
+
+                    <div class="secure-message">
+                        <span>🔒</span>
+                        <span>Your checkout details stay protected.</span>
+                    </div>
+
+                    <a href="cart.html" class="back-link">← Return to Cart</a>
+                </aside>
+            </div>
+        </section>
+
+        <section id="emptyState" class="empty-state" hidden>
+            <div class="empty-icon">🛍️</div>
+            <h2>Your cart is waiting for something special</h2>
+            <p>Add a personalized gift to your cart before proceeding to checkout.</p>
+            <a href="shop.html" class="primary-link">Explore Gifts</a>
+        </section>
+
+        <section id="successState" class="success-state" hidden>
+            <div class="success-icon">✓</div>
+            <h1>Order Details Saved!</h1>
+            <p>Your order information has been saved in this browser session.</p>
+            <p id="successPaymentText">Payment method: Cash on Delivery</p>
+            <div class="order-number" id="orderNumber">Order ID: —</div>
+            <p>This is a demo checkout. No real payment or server-side order processing has occurred.</p>
+            <div class="success-actions">
+                <a href="shop.html" class="primary-link">Continue Shopping</a>
+                <a href="home.html" class="secondary-link">Back to Home</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="home.html" class="logo">MakeIt<span>Mine</span></a>
+        <div>© 2026 MakeItMine. Made for meaningful moments.</div>
+        <div class="footer-links">
+            <a href="about.html">Contact</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+   <script src="../js/checkout.js"></script>
+   <script type="module" src="../js/auth-guard.js"></script>
+</body>
+</html>

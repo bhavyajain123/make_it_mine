@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account | MakeItMine</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+:root {
+  --primary: #7654e8;
+  --primary-dark: #5d3dcc;
+  --soft: #f1edff;
+  --ink: #28243c;
+  --muted: #858197;
+  --line: #eae7f2;
+  --bg: #f8f7fc;
+  --shadow: 0 10px 30px rgba(43,32,87,.06);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+button, input, textarea {
+  font: inherit;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.announcement {
+  background: var(--ink);
+  color: white;
+  text-align: center;
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.site-header {
+  background: white;
+  border-bottom: 1px solid var(--line);
+}
+
+.navbar {
+  width: min(1240px, calc(100% - 48px));
+  min-height: 76px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -.8px;
+  white-space: nowrap;
+}
+
+.brand span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #59556b;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.icon-link {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+.icon-link:hover {
+  background: var(--soft);
+}
+
+.cart-count {
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  background: var(--primary);
+  color: white;
+  font-size: 10px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+}
+
+.wrap {
+  width: min(1240px, calc(100% - 48px));
+  margin: auto;
+}
+
+.page-hero {
+  padding: 36px 0 30px;
+  background: linear-gradient(110deg, #f0ecff, #fff);
+  border-bottom: 1px solid #eee9fb;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.page-hero h1,
+.section-heading h2 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: -.6px;
+}
+
+.page-hero h1 {
+  font-size: clamp(32px, 4vw, 44px);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.page-hero p,
+.section-heading p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.breadcrumb {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 17px;
+}
+
+.profile-layout {
+  width: min(1240px, calc(100% - 48px));
+  margin: 32px auto 70px;
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+}
+
+.sidebar {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 20px 15px;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 20px;
+  min-width: 0;
+}
+
+.user-card {
+  text-align: center;
+  padding: 7px 8px 20px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 15px;
+}
+
+.avatar-wrap {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 12px;
+  position: relative;
+}
+
+.avatar {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--soft);
+  border: 4px solid #e8e0ff;
+  color: var(--primary);
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-upload {
+  position: absolute;
+  right: -2px;
+  bottom: 0;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display: grid;
+  place-items: center;
+  border: 3px solid white;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.avatar-upload input {
+  display: none;
+}
+
+.user-card h2 {
+  font-size: 16px;
+  margin-bottom: 3px;
+}
+
+.user-card p {
+  font-size: 12px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.member-pill {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 30px;
+  background: #f7f3e7;
+  color: #92712b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.side-nav button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #69657b;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-align: left;
+  padding: 12px 13px;
+  border-radius: 11px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: .2s;
+}
+
+.side-nav button:hover {
+  background: #f7f4ff;
+  color: var(--primary);
+}
+
+.side-nav button.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 6px 14px rgba(118,84,232,.2);
+}
+
+.nav-icon {
+  width: 19px;
+  text-align: center;
+}
+
+.side-nav .logout {
+  margin-top: 7px;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  padding-top: 17px;
+  color: #d94b60;
+}
+
+.content {
+  min-width: 0;
+}
+
+.panel-section {
+  display: none;
+  animation: fade .2s ease;
+}
+
+.panel-section.active {
+  display: block;
+}
+
+@keyframes fade {
+  from { opacity: .4; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 21px;
+}
+
+.section-heading h2 {
+  font-size: 28px;
+}
+
+.section-heading p {
+  margin-top: 4px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: .2s;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: white;
+  color: var(--primary);
+  border-color: #dcd3fa;
+}
+
+.btn-outline:hover {
+  background: var(--soft);
+}
+
+.btn-danger {
+  background: #fff1f3;
+  color: #d94b60;
+  border-color: #ffdae0;
+}
+
+.btn-small {
+  padding: 8px 11px;
+  font-size: 11px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.stat-card {
+  padding: 20px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  min-width: 0;
+}
+
+.stat-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: var(--soft);
+  color: var(--primary);
+  font-size: 17px;
+  margin-bottom: 13px;
+}
+
+.stat-card strong {
+  display: block;
+  font-size: 25px;
+  line-height: 1.2;
+  margin-bottom: 5px;
+  overflow-wrap: anywhere;
+}
+
+.stat-card span:last-child {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.panel {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  margin-bottom: 19px;
+  min-width: 0;
+}
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.panel-heading h3 {
+  font-size: 15px;
+}
+
+.panel-heading p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.text-link {
+  border: 0;
+  background: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.empty-state {
+  min-height: 170px;
+  border: 1px dashed #d9d0f6;
+  border-radius: 13px;
+  background: #fcfbff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 23px;
+}
+
+.empty-icon {
+  width: 39px;
+  height: 39px;
+  border-radius: 12px;
+  background: var(--soft);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.empty-state h4 {
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+.empty-state p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.info-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.info-item label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: .8px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.info-value {
+  border: 1px solid var(--line);
+  background: #fcfbfe;
+  border-radius: 9px;
+  padding: 11px 12px;
+  font-size: 12px;
+  min-height: 40px;
+  overflow-wrap: anywhere;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #514d64;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 13px;
+  border: 1px solid #e4e0ee;
+  border-radius: 10px;
+  background: white;
+  color: var(--ink);
+  outline: none;
+  font-size: 13px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(118,84,232,.1);
+}
+
+.form-group textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+th, td {
+  text-align: left;
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+
+th {
+  background: #faf9fd;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+td {
+  color: #514d64;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.status {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 20px;
+  background: var(--soft);
+  color: var(--primary);
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status.delivered,
+.status.success {
+  background: #e6f7ef;
+  color: #16845d;
+}
+
+.status.pending {
+  background: #fff4df;
+  color: #a16b00;
+}
+
+.status.cancelled {
+  background: #fff0f2;
+  color: #d94b60;
+}
+
+.address-grid,
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.address-card,
+.wishlist-card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 17px;
+  min-width: 0;
+  background: white;
+}
+
+.address-card h4,
+.wishlist-card h4 {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.address-card p {
+  font-size: 12px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.address-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.wishlist-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #f4f0ff;
+  margin-bottom: 12px;
+}
+
+.wishlist-card p {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.setting-row:last-child {
+  border-bottom: 0;
+}
+
+.setting-row h4 {
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+.setting-row p {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.setting-row input {
+  accent-color: var(--primary);
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+footer {
+  background: #252139;
+  color: white;
+  padding: 26px 20px;
+  text-align: center;
+  font-size: 12px;
+}
+
+footer p {
+  color: #c6c1d7;
+}
+
+.toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 1000;
+  background: #28243c;
+  color: white;
+  padding: 13px 17px;
+  border-radius: 11px;
+  box-shadow: 0 10px 28px rgba(33,26,69,.2);
+  font-size: 13px;
+  max-width: calc(100% - 44px);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .profile-layout {
+    grid-template-columns: 225px minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  .stat-card {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    width: calc(100% - 28px);
+    min-height: 65px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+    padding: 5px 0;
+    font-size: 12px;
+  }
+
+  .wrap,
+  .profile-layout {
+    width: calc(100% - 28px);
+  }
+
+  .page-hero {
+    padding: 27px 0 23px;
+  }
+
+  .profile-layout {
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+    gap: 18px;
+  }
+
+  .sidebar {
+    position: static;
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .user-card {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 12px;
+    padding: 3px 3px 14px;
+  }
+
+  .avatar-wrap,
+  .avatar {
+    width: 57px;
+    height: 57px;
+    flex-shrink: 0;
+  }
+
+  .avatar {
+    font-size: 19px;
+  }
+
+  .avatar-upload {
+    width: 23px;
+    height: 23px;
+    font-size: 10px;
+  }
+
+  .user-card h2 {
+    font-size: 14px;
+  }
+
+  .member-pill {
+    margin-top: 5px;
+  }
+
+  .side-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  .side-nav button {
+    font-size: 12px;
+    padding: 10px 9px;
+    gap: 7px;
+  }
+
+  .side-nav .logout {
+    margin-top: 0;
+    border-top: 0;
+    padding-top: 10px;
+  }
+
+  .section-heading h2 {
+    font-size: 24px;
+  }
+
+  .panel {
+    padding: 17px;
+  }
+
+  .stats-grid {
+    gap: 8px;
+  }
+
+  .stat-card {
+    padding: 12px;
+  }
+
+  .stat-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .stat-card strong {
+    font-size: 20px;
+  }
+
+  .stat-card span:last-child {
+    font-size: 10px;
+  }
+
+  .address-grid,
+  .wishlist-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 430px) {
+  .wrap,
+  .profile-layout {
+    width: calc(100% - 22px);
+  }
+
+  .brand {
+    font-size: 19px;
+  }
+
+  .nav-links {
+    gap: 14px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .stat-icon {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .stat-card strong {
+    font-size: 19px;
+  }
+
+  .stat-card span:last-child {
+    font-size: 11px;
+  }
+
+  .info-list,
+  .form-grid,
+  .address-grid,
+  .wishlist-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading > .btn {
+    width: 100%;
+  }
+
+  .panel {
+    padding: 15px;
+  }
+}
+</style>
+
+ <link rel="stylesheet" href="../styles/profile.css">
+</head>
+
+<body>
+<div class="announcement">MAKE IT PERSONAL · MAKE IT MEMORABLE · FREE SHIPPING ABOVE ₹999</div>
+
+<header class="site-header">
+  <div class="navbar">
+    <a class="brand" href="home.html">MakeIt<span>Mine</span></a>
+
+    <nav class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">Our Story</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="icon-link" href="profile.html" aria-label="Account">♙</a>
+      <a class="icon-link" href="cart.html" aria-label="Cart">♧<span class="cart-count" id="cartCount">0</span></a>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Your personal space</div>
+    <h1>My Account</h1>
+    <p>Manage your profile, orders and all your favourite things.</p>
+    <div class="breadcrumb">
+      <a href="home.html">Home</a>
+      <span>/</span>
+      <span>My Account</span>
+    </div>
+  </div>
+</section>
+
+<main class="profile-layout">
+  <aside class="sidebar">
+    <div class="user-card">
+      <div class="avatar-wrap">
+        <div class="avatar" id="avatarPreview">G</div>
+        <label class="avatar-upload" title="Change photo">✎
+          <input id="avatarInput" type="file" accept="image/*">
+        </label>
+      </div>
+
+      <div>
+        <h2 id="sidebarName">Welcome, Guest!</h2>
+        <p id="sidebarEmail">Add your email address</p>
+        <span class="member-pill">✦ MAKEITMINE MEMBER</span>
+      </div>
+    </div>
+
+    <nav class="side-nav" aria-label="Account sections">
+      <button class="active" data-section="overview"><span class="nav-icon">⌂</span>Overview</button>
+      <button data-section="orders"><span class="nav-icon">▤</span>My Orders</button>
+      <button data-section="details"><span class="nav-icon">♙</span>Personal Details</button>
+      <button data-section="addresses"><span class="nav-icon">⌖</span>Addresses</button>
+      <button data-section="wishlist"><span class="nav-icon">♡</span>Wishlist</button>
+      <button data-section="settings"><span class="nav-icon">⚙</span>Settings</button>
+      <button class="logout" id="logoutBtn"><span class="nav-icon">↪</span>Log Out</button>
+    </nav>
+  </aside>
+
+  <div class="content">
+    <section class="panel-section active" id="section-overview">
+      <div class="section-heading">
+        <div>
+          <h2>Hello, there! 👋</h2>
+          <p>Here's what's happening with your account.</p>
+        </div>
+        <button class="btn btn-primary" data-go="details">Edit Profile ✎</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">▤</div>
+          <strong id="totalOrders">0</strong>
+          <span>Total Orders</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">♡</div>
+          <strong id="totalWishlist">0</strong>
+          <span>Saved Favourites</span>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">₹</div>
+          <strong id="totalValue">₹0</strong>
+          <span>Total Order Value</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading">
+          <div>
+            <h3>Recent Orders</h3>
+            <p>Your latest purchases in one place.</p>
+          </div>
+          <button class="text-link" data-go="orders">View All →</button>
+        </div>
+        <div id="recentOrders"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading">
+          <div>
+            <h3>Account Information</h3>
+            <p>Keep your details up to date.</p>
+          </div>
+          <button class="text-link" data-go="details">Edit →</button>
+        </div>
+        <div class="info-list">
+          <div class="info-item">
+            <label>FULL NAME</label>
+            <div class="info-value" id="overviewName">Not added</div>
+          </div>
+          <div class="info-item">
+            <label>EMAIL ADDRESS</label>
+            <div class="info-value" id="overviewEmail">Not added</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel-section" id="section-orders">
+      <div class="section-heading">
+        <div>
+          <h2>My Orders</h2>
+          <p>Track and review your orders.</p>
+        </div>
+        <a class="btn btn-outline" href="shop.html">Continue Shopping</a>
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading">
+          <div>
+            <h3>Order History</h3>
+            <p>Orders saved in this browser are shown here.</p>
+          </div>
+        </div>
+        <div id="allOrders"></div>
+      </div>
+    </section>
+
+    <section class="panel-section" id="section-details">
+      <div class="section-heading">
+        <div>
+          <h2>Personal Details</h2>
+          <p>Update the information associated with your account.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <form id="profileForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input id="fullName" required placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input id="email" type="email" required placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input id="phone" type="tel" placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group">
+              <label for="birthDate">Date of Birth</label>
+              <input id="birthDate" type="date">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="aboutMe">About Me</label>
+            <textarea id="aboutMe" placeholder="Tell us a little about yourself"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Save Changes</button>
+            <button class="btn btn-outline" type="reset">Reset</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="panel-section" id="section-addresses">
+      <div class="section-heading">
+        <div>
+          <h2>My Addresses</h2>
+          <p>Save addresses for a smoother checkout.</p>
+        </div>
+        <button class="btn btn-primary" id="addAddressBtn">＋ Add Address</button>
+      </div>
+
+      <div id="addressList" class="address-grid"></div>
+
+      <div class="panel" id="addressFormPanel" hidden>
+        <div class="panel-heading">
+          <div>
+            <h3 id="addressFormTitle">Add a new address</h3>
+            <p>Enter the delivery details below.</p>
+          </div>
+        </div>
+
+        <form id="addressForm">
+          <input type="hidden" id="addressId">
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="addressLabel">Address Label *</label>
+              <input id="addressLabel" required placeholder="Home, Work, etc.">
+            </div>
+            <div class="form-group">
+              <label for="addressPhone">Phone Number *</label>
+              <input id="addressPhone" required type="tel" placeholder="Contact number">
+            </div>
+            <div class="form-group">
+              <label for="addressLine">House / Street *</label>
+              <input id="addressLine" required placeholder="Flat, house, street">
+            </div>
+            <div class="form-group">
+              <label for="addressArea">Area / Locality</label>
+              <input id="addressArea" placeholder="Area or locality">
+            </div>
+            <div class="form-group">
+              <label for="addressCity">City *</label>
+              <input id="addressCity" required placeholder="City">
+            </div>
+            <div class="form-group">
+              <label for="addressState">State *</label>
+              <input id="addressState" required placeholder="State">
+            </div>
+            <div class="form-group">
+              <label for="addressPin">PIN Code *</label>
+              <input id="addressPin" required inputmode="numeric" placeholder="PIN code">
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Save Address</button>
+            <button class="btn btn-outline" type="button" id="cancelAddressBtn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="panel-section" id="section-wishlist">
+      <div class="section-heading">
+        <div>
+          <h2>My Wishlist</h2>
+          <p>Your saved favourites, all in one place.</p>
+        </div>
+        <a class="btn btn-outline" href="shop.html">Explore Products</a>
+      </div>
+      <div id="wishlistList" class="wishlist-grid"></div>
+    </section>
+
+    <section class="panel-section" id="section-settings">
+      <div class="section-heading">
+        <div>
+          <h2>Settings</h2>
+          <p>Choose how you want to hear from us.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="setting-row">
+          <div>
+            <h4>Order updates</h4>
+            <p>Receive updates about your purchases.</p>
+          </div>
+          <input type="checkbox" id="settingOrders">
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <h4>Personalised recommendations</h4>
+            <p>Get suggestions based on your interests.</p>
+          </div>
+          <input type="checkbox" id="settingRecommendations">
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <h4>Offers and promotions</h4>
+            <p>Hear about new launches and special offers.</p>
+          </div>
+          <input type="checkbox" id="settingOffers">
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" id="saveSettingsBtn">Save Preferences</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading">
+          <div>
+            <h3>Privacy & Account</h3>
+            <p>Profile information is stored in this browser for this demo.</p>
+          </div>
+        </div>
+        <button class="btn btn-danger" id="clearProfileBtn">Clear Saved Profile</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 MakeItMine. Make it personal. Make it memorable.</p>
+</footer>
+
+<div class="toast" id="toast" role="status" hidden></div>
+<script type="module" src="../js/profile.js"></script>
+<script type="module" src="../js/auth-guard.js"></script>
+</body>
+</html>

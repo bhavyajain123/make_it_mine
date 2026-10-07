@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Order | MakeItMine</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #6d28d9;
+    --primary-dark: #5b21b6;
+    --primary-light: #f3eaff;
+    --dark: #20172e;
+    --text: #514960;
+    --muted: #898196;
+    --border: #eae5f0;
+    --background: #faf9fc;
+    --white: #ffffff;
+    --success: #12845e;
+    --success-bg: #e7f8f0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    background: var(--background);
+    color: var(--dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Navigation */
+
+.navbar {
+    width: 100%;
+    min-height: 76px;
+    padding: 16px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 5;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 850;
+    letter-spacing: -1.3px;
+    color: var(--primary);
+    white-space: nowrap;
+}
+
+.logo span {
+    color: var(--dark);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex: 1;
+}
+
+.nav-links a {
+    font-size: 13px;
+    font-weight: 600;
+    color: #625a70;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-btn {
+    min-height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: white;
+    font-size: 12px;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.nav-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: #fcfaff;
+}
+
+/* Hero */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 66px 20px 92px;
+    text-align: center;
+    background: linear-gradient(125deg, #f1e8ff 0%, #faf5ff 48%, #fff4ee 100%);
+}
+
+.hero::before,
+.hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.hero::before {
+    width: 230px;
+    height: 230px;
+    top: -125px;
+    left: 8%;
+    background: #ffffff55;
+}
+
+.hero::after {
+    width: 280px;
+    height: 280px;
+    right: 4%;
+    bottom: -205px;
+    background: #e8d5ff66;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 15px;
+    margin-bottom: 19px;
+    border: 1px solid #e8d9ff;
+    border-radius: 30px;
+    background: #ffffffd9;
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 13px;
+    font-size: clamp(32px, 4.5vw, 48px);
+    font-weight: 800;
+    letter-spacing: -1.8px;
+    line-height: 1.2;
+}
+
+.hero p {
+    position: relative;
+    z-index: 1;
+    color: #746b82;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+/* Order Search */
+
+.search-card {
+    position: relative;
+    z-index: 2;
+    width: min(720px, calc(100% - 40px));
+    margin: -47px auto 42px;
+    padding: 27px 30px;
+    border: 1px solid #eee7f5;
+    border-radius: 17px;
+    background: var(--white);
+    box-shadow: 0 16px 45px rgba(48, 25, 75, 0.08);
+}
+
+.search-card label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--dark);
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.search-row {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.search-row input {
+    width: 100%;
+    min-width: 0;
+    height: 51px;
+    padding: 0 16px;
+    outline: none;
+    border: 1px solid #e3dce9;
+    border-radius: 9px;
+    background: #fdfcff;
+    color: var(--dark);
+    font-size: 13px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-row input::placeholder {
+    color: #aaa2b5;
+}
+
+.search-row input:focus {
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px #6d28d915;
+}
+
+.primary-btn {
+    min-width: 155px;
+    min-height: 51px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 9px;
+    background: var(--primary);
+    color: white;
+    font-size: 12px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.primary-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.hint {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.9;
+}
+
+.hint button {
+    padding: 2px 4px;
+    border: 0;
+    background: transparent;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.hint button:hover {
+    text-decoration: underline;
+}
+
+/* Main Layout */
+
+.container {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    padding: 0 24px 75px;
+}
+
+.result {
+    display: none;
+}
+
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.order-top h2 {
+    margin-bottom: 7px;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+.order-number {
+    color: var(--muted);
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.order-number strong {
+    color: var(--dark);
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 30px;
+    background: var(--success-bg);
+    color: var(--success);
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--success);
+}
+
+/* Two Column Content */
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(280px, 1fr);
+    align-items: start;
+    gap: 23px;
+}
+
+.layout > div {
+    min-width: 0;
+}
+
+/* Cards */
+
+.card {
+    min-width: 0;
+    margin-bottom: 22px;
+    padding: 27px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--white);
+    box-shadow: 0 4px 16px rgba(39, 22, 58, 0.025);
+}
+
+.card h3 {
+    margin-bottom: 6px;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+}
+
+.card-subtitle {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* Delivery Banner */
+
+.delivery-banner {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    margin: 23px 0 29px;
+    padding: 20px;
+    border: 1px solid #eee4ff;
+    border-radius: 12px;
+    background: linear-gradient(120deg, #f7f0ff, #fff8f4);
+}
+
+.delivery-icon {
+    display: grid;
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    place-items: center;
+    border: 1px solid #ffffff;
+    border-radius: 13px;
+    background: white;
+    font-size: 26px;
+    box-shadow: 0 4px 12px #301a4b08;
+}
+
+.delivery-banner small {
+    display: block;
+    color: #82768f;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.delivery-banner h4 {
+    margin: 5px 0;
+    color: var(--primary);
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.delivery-banner p {
+    color: #777084;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* Tracking Timeline */
+
+.timeline {
+    position: relative;
+    padding: 7px 0 0 3px;
+}
+
+.step {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    min-height: 98px;
+}
+
+.step:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 36px;
+    bottom: 0;
+    left: 15px;
+    width: 2px;
+    background: #eae4f0;
+}
+
+.step.completed:not(:last-child)::before {
+    background: #a78bfa;
+}
+
+.step-icon {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    place-items: center;
+    border: 2px solid #e8e2ed;
+    border-radius: 50%;
+    background: white;
+    color: #a49bad;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.step.completed .step-icon {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+}
+
+.step.current .step-icon {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary);
+    box-shadow: 0 0 0 5px #f8f3ff;
+}
+
+.step-content {
+    min-width: 0;
+    padding: 4px 0 27px;
+}
+
+.step-content h4 {
+    margin-bottom: 6px;
+    color: var(--dark);
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.step-content p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.step-content time {
+    display: block;
+    margin-top: 7px;
+    color: #9991a5;
+    font-size: 10px;
+}
+
+.step.pending .step-content h4 {
+    color: #a49bad;
+}
+
+/* Products */
+
+.product-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 17px 0;
+    border-bottom: 1px solid #f0ebf4;
+}
+
+.product-row:first-child {
+    margin-top: 8px;
+}
+
+.product-row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.product-image {
+    display: grid;
+    width: 66px;
+    height: 66px;
+    flex-shrink: 0;
+    place-items: center;
+    border: 1px solid #eee6f8;
+    border-radius: 11px;
+    background: #f8f3ff;
+    font-size: 29px;
+}
+
+.product-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.product-info h4 {
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: 750;
+    line-height: 1.5;
+}
+
+.product-info p {
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.product-price {
+    flex-shrink: 0;
+    color: var(--dark);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* Order Summary */
+
+.info-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 17px;
+    font-size: 11px;
+}
+
+.info-row span:first-child {
+    flex-shrink: 0;
+    color: var(--muted);
+}
+
+.info-row strong {
+    max-width: 62%;
+    color: var(--dark);
+    font-size: 11px;
+    font-weight: 750;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.info-divider {
+    height: 1px;
+    margin-top: 19px;
+    border: 0;
+    background: var(--border);
+}
+
+.total-row {
+    margin-top: 19px;
+}
+
+.total-row span:first-child {
+    color: var(--dark);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.total-row strong {
+    color: var(--primary);
+    font-size: 19px;
+    font-weight: 850;
+}
+
+.address-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 17px;
+    border: 1px solid #eee7f4;
+    border-radius: 11px;
+    background: #fbf9fd;
+}
+
+.address-icon {
+    flex-shrink: 0;
+    font-size: 20px;
+}
+
+.address-box h4 {
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.address-box p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+}
+
+/* Help Card */
+
+.help-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 21px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: white;
+}
+
+.help-icon {
+    display: grid;
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    place-items: center;
+    border-radius: 11px;
+    background: var(--primary-light);
+    font-size: 21px;
+}
+
+.help-card h4 {
+    margin: 2px 0 6px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.help-card p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.help-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.help-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Not Found State */
+
+.empty-state {
+    display: none;
+    margin-bottom: 35px;
+    padding: 55px 25px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: white;
+    text-align: center;
+}
+
+.empty-icon {
+    margin-bottom: 15px;
+    font-size: 45px;
+}
+
+.empty-state h3 {
+    margin-bottom: 10px;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.empty-state p {
+    max-width: 470px;
+    margin: 0 auto 22px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.empty-state a {
+    display: inline-flex;
+    min-height: 43px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 19px;
+    border-radius: 9px;
+    background: var(--primary);
+    color: white;
+    font-size: 12px;
+    font-weight: 750;
+    transition: background 0.2s;
+}
+
+.empty-state a:hover {
+    background: var(--primary-dark);
+}
+
+/* Footer */
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 22px;
+    padding: 32px 7%;
+    background: #21172f;
+    color: white;
+}
+
+.footer .logo {
+    color: #c4a5ff;
+    font-size: 24px;
+}
+
+.footer .logo span {
+    color: white;
+}
+
+.footer p {
+    color: #c6bbd2;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    color: #e3d9ed;
+    font-size: 11px;
+}
+
+.footer-links a:hover {
+    color: #c4a5ff;
+}
+
+/* Notification */
+
+.toast {
+    position: fixed;
+    z-index: 20;
+    right: 22px;
+    bottom: 22px;
+    max-width: calc(100% - 44px);
+    padding: 14px 19px;
+    border: 1px solid #453651;
+    border-radius: 10px;
+    background: #251b31;
+    color: white;
+    font-size: 12px;
+    line-height: 1.6;
+    box-shadow: 0 8px 30px #1e123026;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.25s, transform 0.25s;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Tablet */
+
+@media (max-width: 950px) {
+    .navbar {
+        padding: 16px 4%;
+        gap: 18px;
+    }
+
+    .nav-links {
+        gap: 17px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .layout {
+        grid-template-columns: minmax(0, 1.3fr) minmax(260px, 1fr);
+        gap: 16px;
+    }
+
+    .card {
+        padding: 21px;
+    }
+
+    .delivery-banner {
+        padding: 16px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+    .navbar {
+        min-height: 68px;
+        padding: 14px 5%;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-actions {
+        gap: 7px;
+    }
+
+    .nav-btn {
+        min-height: 37px;
+        padding: 0 11px;
+        font-size: 11px;
+    }
+
+    .hero {
+        padding: 49px 18px 79px;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+        letter-spacing: -1.2px;
+    }
+
+    .hero p {
+        font-size: 12px;
+    }
+
+    .search-card {
+        width: calc(100% - 30px);
+        margin: -42px auto 30px;
+        padding: 21px;
+    }
+
+    .container {
+        padding: 0 15px 48px;
+    }
+
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+    }
+
+    .order-top {
+        align-items: flex-start;
+        margin-bottom: 18px;
+    }
+
+    .order-top h2 {
+        font-size: 22px;
+    }
+
+    .card {
+        margin-bottom: 17px;
+        padding: 22px;
+    }
+
+    .delivery-banner {
+        gap: 13px;
+        margin: 20px 0 25px;
+    }
+
+    .delivery-banner h4 {
+        font-size: 17px;
+    }
+
+    .product-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .footer {
+        padding: 28px 5%;
+        gap: 17px;
+    }
+
+    .footer-links {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 420px) {
+    .navbar {
+        gap: 8px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-btn {
+        padding: 0 9px;
+        font-size: 10px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .search-card {
+        padding: 18px;
+    }
+
+    .search-row {
+        flex-direction: column;
+    }
+
+    .search-row input {
+        height: 48px;
+    }
+
+    .primary-btn {
+        width: 100%;
+        min-height: 47px;
+    }
+
+    .order-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-top h2 {
+        font-size: 21px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .delivery-banner {
+        align-items: flex-start;
+        padding: 14px;
+    }
+
+    .delivery-icon {
+        width: 43px;
+        height: 43px;
+        font-size: 22px;
+    }
+
+    .delivery-banner h4 {
+        font-size: 15px;
+    }
+
+    .product-row {
+        gap: 10px;
+    }
+
+    .product-image {
+        width: 48px;
+        height: 48px;
+        font-size: 23px;
+    }
+
+    .product-info h4 {
+        font-size: 11px;
+    }
+
+    .product-price {
+        font-size: 11px;
+    }
+
+    .info-row {
+        gap: 9px;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .empty-state {
+        padding: 38px 18px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+<a href="home.html" class="logo">Make<span>ItMine.</span></a>
+<nav class="nav-links">
+<a href="home.html">Home</a>
+<a href="shop.html">Shop</a>
+<a href="categories.html">Categories</a>
+<a href="about.html">About Us</a>
+</nav>
+<div class="nav-actions">
+<a href="cart.html" class="nav-btn">🛒 Cart</a>
+<a href="login.html" class="nav-btn">Login</a>
+</div>
+</header>
+
+<section class="hero">
+<div class="eyebrow">YOUR ORDER, YOUR WAY</div>
+<h1>Track Your Order 📦</h1>
+<p>Your personalized gifts are on their way.<br>Enter your order ID below to check the latest status.</p>
+</section>
+
+<main>
+<section class="search-card">
+<form id="trackForm">
+<label for="orderId">Order ID</label>
+<div class="search-row">
+<input type="text" id="orderId" placeholder="e.g. MIM1024" autocomplete="off" required>
+<button class="primary-btn" type="submit">Track Order →</button>
+</div>
+<div class="hint">Want to try the demo? Use <button type="button" onclick="demoOrder('MIM1024')">MIM1024</button> or <button type="button" onclick="demoOrder('MIM1025')">MIM1025</button>.</div>
+</form>
+</section>
+
+<div class="container">
+<div class="empty-state" id="emptyState">
+<div class="empty-icon">🔎</div>
+<h3>We couldn't find that order</h3>
+<p>Please check your order ID and try again. If you placed an order recently, make sure you're using the correct ID from your confirmation.</p>
+<a href="shop.html">Continue Shopping</a>
+</div>
+
+<section class="result" id="result">
+<div class="order-top">
+<div>
+<h2>Order Tracking</h2>
+<p class="order-number">Order ID: <strong id="displayOrderId"></strong> · Placed on <span id="orderDate"></span></p>
+</div>
+<div class="status-pill"><span class="status-dot"></span><span id="statusLabel">In Transit</span></div>
+</div>
+
+<div class="layout">
+<div>
+<div class="card">
+<h3>Delivery Updates</h3>
+<p class="card-subtitle">Follow your order's journey from our store to your doorstep.</p>
+<div class="delivery-banner">
+<div class="delivery-icon">🚚</div>
+<div>
+<small>ESTIMATED DELIVERY</small>
+<h4 id="deliveryDate">October 8, 2026</h4>
+<p id="deliveryMessage">Your package is moving towards you.</p>
+</div>
+</div>
+<div class="timeline" id="timeline"></div>
+</div>
+<div class="card">
+<h3>Items in Your Order</h3>
+<p class="card-subtitle">Your specially chosen gifts.</p>
+<div id="productList"></div>
+</div>
+</div>
+
+<div>
+<div class="card">
+<h3>Order Summary</h3>
+<p class="card-subtitle">Payment and order details.</p>
+<div class="info-row"><span>Order ID</span><strong id="summaryId"></strong></div>
+<div class="info-row"><span>Order date</span><strong id="summaryDate"></strong></div>
+<div class="info-row"><span>Payment method</span><strong id="paymentMethod"></strong></div>
+<div class="info-row"><span>Payment status</span><strong id="paymentStatus"></strong></div>
+<hr class="info-divider">
+<div class="info-row"><span>Subtotal</span><strong id="subtotal"></strong></div>
+<div class="info-row"><span>Shipping</span><strong id="shipping"></strong></div>
+<div class="info-row"><span>Discount</span><strong id="discount"></strong></div>
+<hr class="info-divider">
+<div class="info-row total-row"><span>Total paid</span><strong id="total"></strong></div>
+<div class="address-box">
+<div class="address-icon">📍</div>
+<div><h4>Delivery Address</h4><p id="address"></p></div>
+</div>
+</div>
+<div class="help-card">
+<div class="help-icon">💬</div>
+<div>
+<h4>Need help with your order?</h4>
+<p>Have a question about delivery or your personalized gift?</p>
+<a class="help-link" href="about.html">Contact MakeItMine →</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+
+<footer class="footer">
+<div><a href="home.html" class="logo" style="color:#c4a5ff">Make<span style="color:#fff">ItMine.</span></a><p style="margin-top:9px">Little things. Big feelings. Made just for you.</p></div>
+<div class="footer-links"><a href="shop.html">Shop</a><a href="about.html">About</a><a href="cart.html">Cart</a></div>
+<p>© 2026 MakeItMine. All rights reserved.</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="../js/order-tracking.js"></script>
+<script type="module" src="../js/auth-guard.js"></script>
+</body>
+</html>

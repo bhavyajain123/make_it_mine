@@ -1,0 +1,218 @@
+:root {
+    --pink: #ff4f81;
+    --pink-hover: #ed3d70;
+    --pink-text: #ff3f78;
+    --pink-soft: #fff0f5;
+    --pink-softer: #fff4f7;
+    --pink-coupon-hover: #fff1f6;
+ 
+    --dark: #222;
+    --text-muted: #666;
+    --border: #eee;
+    --bg: #f8f9fc;
+ 
+    --radius-card: 16px;
+    --radius-btn: 9px;
+    --speed: 0.2s;
+}
+ 
+body {
+    background: var(--bg);
+}
+ 
+
+.top-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+ 
+.logo {
+    letter-spacing: -0.5px;
+}
+ 
+.navbar a {
+    transition: color var(--speed) ease;
+}
+ 
+.navbar a:hover {
+    color: var(--pink);
+}
+ 
+.header-actions button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: background var(--speed) ease;
+}
+ 
+.header-actions button:hover {
+    background: var(--pink-soft);
+}
+ 
+
+.page-header {
+    padding: 60px 20px;
+    text-align: center;
+    background: var(--pink-softer);
+}
+ 
+.page-header h1 {
+    margin: 0;
+    color: var(--dark);
+    font-size: 40px;
+    letter-spacing: -0.5px;
+}
+ 
+.page-header p {
+    margin: 8px 0 0;
+    color: var(--text-muted);
+    font-size: 16px;
+}
+ 
+
+.offers-container {
+    max-width: 1150px;
+    margin: 50px auto 80px;
+    padding: 0 20px;
+}
+ 
+.offers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+ 
+.offer-card {
+    min-height: 290px;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    transition: transform var(--speed) ease, box-shadow var(--speed) ease;
+}
+ 
+.offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.09);
+}
+ 
+.offer-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: var(--pink-soft);
+    border-radius: 20px;
+    color: var(--pink-text);
+    font-size: 11px;
+    font-weight: 700;
+}
+ 
+.offer-card h2 {
+    margin: 14px 0 10px;
+    font-size: 23px;
+}
+ 
+.offer-card p {
+    max-width: 430px;
+    margin: 0 0 20px;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
+}
+ 
+
+.coupon {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 12px 20px;
+    background: #fff;
+    border: 1px dashed var(--pink);
+    border-radius: 10px;
+    color: var(--pink);
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background var(--speed) ease, transform var(--speed) ease;
+}
+ 
+.coupon:hover {
+    background: var(--pink-coupon-hover);
+    transform: translateY(-2px);
+}
+ 
+
+.shop-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius-btn);
+    background: var(--pink);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 5px 14px rgba(255, 79, 129, 0.18);
+    transition: background var(--speed) ease, transform var(--speed) ease,
+                box-shadow var(--speed) ease;
+}
+ 
+.shop-btn:hover {
+    background: var(--pink-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(255, 79, 129, 0.25);
+}
+ 
+
+.shop-btn:focus-visible,
+.coupon:focus-visible,
+.header-actions button:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: 2px;
+}
+ 
+
+@media (max-width: 800px) {
+    .offers-container {
+        margin-top: 35px;
+    }
+ 
+    .offer-card {
+        min-height: auto;
+    }
+ 
+    .page-header h1 {
+        font-size: 36px;
+    }
+}
+ 
+@media (max-width: 700px) {
+    .offers-grid {
+        grid-template-columns: 1fr;
+    }
+ 
+    .page-header {
+        padding: 50px 20px;
+    }
+ 
+    .page-header h1 {
+        font-size: 32px;
+    }
+ 
+    .offer-card {
+        padding: 25px;
+    }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+ 

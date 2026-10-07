@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Successful - Make It Mine</title>
+
+    <style>
+        * {
+
+            margin: 0;
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+        body {
+
+            font-family: Arial, sans-serif;
+        background: white;
+
+            color: black;
+        }
+
+
+
+        a {
+        text-decoration: none;
+            color: inherit;
+
+        }
+
+        .top-header {
+
+            height: 75px;
+
+          padding: 0 50px;
+            background: white;
+            border-bottom: 1px solid white;
+
+          display: flex;
+            align-items: center;
+
+
+            justify-content: space-between;
+
+
+        }
+
+
+        .logo {
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+
+        }
+
+
+        .logo span {
+
+            color: #ff4f81;
+
+        }
+
+        .navbar {
+         display: flex;
+            gap: 30px;
+        }
+
+        .navbar a:hover {
+            color: #ff4f81;
+
+        }
+
+
+        .header-actions {
+
+            display: flex;
+            gap: 10px;
+        }
+
+
+        .header-actions button {
+
+            border: none;
+
+            background: transparent;
+
+         font-size: 19px;
+            cursor: pointer;
+        }
+
+
+
+        .success-section {
+
+            min-height: 75vh;
+
+           display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 50px 20px;
+        }
+
+
+
+        .success-card {
+            width: 100%;
+
+           max-width: 650px;
+            background: white;
+         padding: 55px 40px;
+            border-radius: 20px;
+
+            text-align: center;
+            
+        }
+        
+
+        .success-icon {
+
+             
+            width: 85px;
+            height: 85px;
+
+            margin: 0 auto 25px;
+
+            border-radius: 50%;
+            background: #e9fff1;
+       color: green;
+         display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+         font-size: 42px;
+
+
+        }
+
+
+        .success-card h1 {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+        .success-card p {
+            color: #666;
+            line-height: 1.5;
+
+        }
+
+
+
+        .order-number  {
+
+            margin: 25px 0;
+          padding: 18px;
+            background: white;
+        border-radius: 12px;
+
+        }
+
+
+
+        .order-number strong {
+            color: #ff4f81;
+
+        }
+
+
+        .buttons {
+            display: flex;
+         justify-content: center;
+
+            gap: 15px;
+
+            margin-top: 30px;
+
+
+        }
+
+
+        .btn {
+            padding: 13px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+     .primary {
+
+            background: #ff4f81;
+
+         color: white;
+
+        }
+
+
+
+        .secondary {
+
+            border: 1px solid white;
+
+        }
+
+
+        @media(max-width:700px) {
+            .top-header {
+          padding: 15px 20px;
+
+                height: auto;
+
+              flex-wrap: wrap;
+            gap: 15px;
+            }
+
+
+
+            .navbar {
+
+             order: 3;
+                width: 100%;
+
+                justify-content: center;
+
+            }
+
+
+
+            .success-card {
+                padding: 40px 20px;
+            }
+
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="../styles/order-success.css">
+</head>
+
+<body>
+
+<header class="top-header">
+
+    <div class="logo">
+        Make It<span> Mine</span>
+    </div>
+
+    <nav class="navbar">
+        <a href="./home.html">Home</a>
+        <a href="./shop.html">Shop</a>
+        <a href="./categories.html">Categories</a>
+        <a href="./about.html">About</a>
+    </nav>
+
+    <div class="header-actions">
+        <button>♡</button>
+        <button>🛒</button>
+        <button>👤</button>
+    </div>
+
+
+
+</header>
+<main>
+
+
+    <section class="success-section">
+
+
+
+        <div class="success-card">
+
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+
+            <h1>Order Placed Successfully!</h1>
+
+
+
+            <p>
+                Thank you for shopping with Make It Mine.
+                Your personalized order has been received.
+            </p>
+
+            <div class="order-number">
+                Order ID:
+                <strong>#MIM-2026-1048</strong>
+
+                
+      </div>
+
+            <p>
+                You will receive updates about your order
+                and delivery status.
+            </p>
+
+            <div class="buttons">
+
+
+
+                <a href="./order-tracking.html" class="btn primary">
+                    Track Order
+                </a>
+
+
+                <a href="./shop.html" class="btn secondary">
+                    Continue Shopping
+                </a>
+
+
+
+
+            </div>
+        </div>
+
+
+
+    </section>
+</main>
+
+
+
+<script src="../js/order-success.js"></script>
+
+</body>
+</html>
